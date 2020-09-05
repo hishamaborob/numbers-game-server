@@ -1,11 +1,11 @@
-###Numbers Game Server - TCP Socket, Event Sourcing, CQRS, DDD
+### Numbers Game Server - TCP Socket, Event Sourcing, CQRS, DDD
 This is a multi threading application that enables multiple players to play with the computer.
 You simply start with a number, each side then gets his turn to add (0,-1, or 1), number shall be 
 divided by 3, and who ever reach 3/3=1 wins!
 
 After starting the TCP socket server, clients can connect to the server and start playing automatically until they get disconnected.
 
-####Workflow
+#### Workflow
 1. Server accepts a connection and creates a new client handler to run in a separate thread.
 2. Client handler generates ID, handles streams, reads incoming commands, and registers messages listeners through the controller.
 3. Controller will convert client inputs into commands and pass them to the game service.
@@ -15,18 +15,18 @@ After starting the TCP socket server, clients can connect to the server and star
 7. The events will also be consumed by a computer player (No AI or fancy stuff, just random stupid function to give you a chance to win!) 
 which will react to the client’s move with new one that gets passed as a command again through the controller.
 
-####Description
+#### Description
 This is a simple event driven app that quite utilizes patterns like DDD, CQRS and Event Sourcing.
 It uses Java11, Google Guava, Log4J, and JUnit.
 And it has 4 packages: adapters, projection, domain and service.
 
-#####Special notes
+##### Special notes
 - Short documentation provided at the header for the main classes.
 - This isn’t meant to be a perfect production ready app, many things are being simply ignored.
 - Only service and domain (the game core) is actually being unit/integration tested.
 - Validation isn’t that sophisticated. Prospect for errors/exceptions in a number of places is ignored.
 
-####Build and Run
+#### Build and Run
 
 ```
 mvn clean package
